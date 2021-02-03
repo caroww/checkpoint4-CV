@@ -32,3 +32,5 @@ class UserFixtures extends Fixture
                 $manager->flush();
     }
 }
+
+/* php bin/console doctrine:fixtures:load --group=UserFixtures --append */
