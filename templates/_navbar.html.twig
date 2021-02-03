@@ -43,7 +43,12 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{ path('experience_index') }}">News</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li>{% if app.user %}
+                                        {{ app.user.email }}
+                                        <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+                                    {% else %}
+                                        <a href="{{ path('app_login') }}"> Espace administrateur</a>
+                                    {% endif %}</li>
                             </ul>
                         </nav>
                         <div class="header__btn">
