@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ExperienceRepository;
+use App\Repository\ProjectRepository;
 
 class HomeController extends AbstractController
 
@@ -27,6 +28,16 @@ class HomeController extends AbstractController
     {
         return $this->render('home/experience.html.twig', [
             'experiences' => $experienceRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/home/project", name="home_project", methods={"GET"})
+     */
+    public function project(projectRepository $projectRepository): Response
+    {
+        return $this->render('home/project.html.twig', [
+            'projects' => $projectRepository->findAll(),
         ]);
     }
 

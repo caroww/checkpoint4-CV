@@ -33,8 +33,22 @@
                         <nav class="header__menu">
                             <ul>
                                 <li class="active"><a href="{{ path('home') }}">Home</a></li>
-                                <li><a href="{{ path('home_experience') }}">Expérience</a></li>
-                                <li><a href="./services.html">Services</a></li>
+                                <li><a href="{{ path('home_experience') }}">Expérience</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <ul class="dropdown">
+                                        <li><a href="{{ path('experience_index') }}">Liste des expériences</a></li>
+                                        <li><a href="{{ path('experience_new') }}">Ajouter une expérience</a></li>                                        
+                                    </ul>
+                                {% endif %}                                
+                                </li>
+                                <li><a href="{{ path('home_project') }}">Projets</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <ul class="dropdown">
+                                        <li><a href="{{ path('project_index') }}">Liste des projets</a></li>
+                                        <li><a href="{{ path('project_new') }}">Ajouter un projet</a></li>                                        
+                                    </ul>
+                                {% endif %}    
+                                </li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="./pricing.html">Pricing</a></li>
@@ -42,7 +56,7 @@
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ path('experience_index') }}">News</a></li>
+                                <li><a href="#">News</a></li>
                                 <li>{% if app.user %}
                                         {{ app.user.email }}
                                         <a href="{{ path('app_logout') }}"> Se déconnecter</a>
