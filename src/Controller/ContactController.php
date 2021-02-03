@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
@@ -25,7 +27,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/message/new", name="message_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, MailerInterface $mailer): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -35,6 +37,15 @@ class ContactController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
+
+            $email = (new Email())
+            ->from($this->getParameter('mailer_from'))
+            ->to('caroline.ww@wanadoo.fr')
+            /* ->to('your_email@example.com') */
+            ->subject('Nouveau contact CV !')
+            ->html($this->renderView('contact/newContactEmail.html.twig', ['contact' => $contact]));
+
+            $mailer->send($email);
 
             return $this->redirectToRoute('home');
         }

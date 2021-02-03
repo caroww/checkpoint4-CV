@@ -1,0 +1,17 @@
+{% extends 'layoutEmail.html.twig' %}
+
+{% block title %}New program{% endblock %}  
+
+{% block body %}
+    <h1>{{ contact.name }} {{ contact.firstname }} a laissé un message :</h1>
+    <h2>Coordonnées :</h2>
+    <p>{{ contact.society }}</p>   
+    <p>{{ contact.email }}</p>
+    <h1>{{ contact.phonenumber }}</h1>
+    <h2>Message :</h2>
+    <h1>{{ contact.message }}</h1>
+   
+{% endblock %}
+   
+
+
