@@ -39,7 +39,7 @@ class CommentController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('article_index');
         }
 
         return $this->render('comment/new.html.twig', [

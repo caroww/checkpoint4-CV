@@ -1,26 +1,42 @@
 # checkpoint4-CV
-cloner dépot
+
+## Sujet
+
+Concevoir une application de type CV en ligne, responsive, intégrant service et test. 
+
+## Utilisation du dépôt
+
+git clone https://github.com/caroww/checkpoint4-CV.git
+
 composer install
+
 yarn install
-configurer env.local
-d:f:l
-doctrine schema update force
 
-METTRE EN COPIE LA BDD
+configurer .env.local
 
+importer la base de données checkpoint4.sql
 
+console doctrine:fixtures:load --group=UserFixtures --append
 
-Outils oraganisationnels :
-- Wireframe sur figma https://www.figma.com/file/o25j8XGkbFlp3nk6zXFJsI/Untitled?node-id=0%3A1
-- Modélisation de la base de données 
-- Product Backlog https://drive.google.com/file/d/1oe748uUQy_3vJvSBFOMme7-C5lAUlwY3/view?usp=sharing
+php bin/console doctrine:schema:update --force
+
+configurer mailer pour envoie de mail de la partie contact
 
 
-Userstory :
-1)Mise en place du projet : Recherche d'idées, création du wireframe, modélisation de la db
-2)cf nom des branches
+## Utilisation du TDD:
 
-TDD :
 composer require --dev symfony/phpunit-bridge
+
 php bin/phpunit
+
 php bin/phpunit src/testsService/SlugifyTest.php
+
+
+## Outils oraganisationnels :
+
+- [Wireframe sur figma](https://www.figma.com/file/o25j8XGkbFlp3nk6zXFJsI/Untitled?node-id=0%3A1)
+
+- [Product Backlog](https://docs.google.com/spreadsheets/d/16hesKSIYT8ZDQBLAv9XyRpjDN1AuEzzcYX-2u5iGHOw/edit?usp=sharing)
+
+- [Modélisation de la DB](https://drive.google.com/file/d/1ldBDFDt9BsTRv1VbwfyIPwT7MVpMfxvi/view?usp=sharing)
+
