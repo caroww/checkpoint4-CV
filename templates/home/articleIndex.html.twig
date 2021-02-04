@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option spad set-bg" style="background-image:url('{{ asset('build/images/fondroselight.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Blog</h2>
+                        <a href="{{ path('home') }}">Home</a>
+                        <span>Blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Services Section Begin -->
+    <section class="services spad set-bg" data-setbg="img/services-bg.jpg">
+        <div class="container">
+
+            <div class="row">
+            {% for article in articles %}
+                <div class="col-lg-6 col-md-6">
+                    <div class="services__item">
+                        <div class="services__item__icon">
+                            <span class="flaticon-044-aesthetic"></span>
+                        </div>
+                        <div class="services__item__text">
+                            <h2>{{ article.title }}</h2>
+                            <p>{{ article.summary }}</p> 
+                            <span>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</span>  
+                            <button class="site-btn"><a href="{{ path('article_show', { slugArticle: article.slugArticle }) }}">Lire l'article</a></button>
+                        </div>
+                    </div>
+                </div>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End --> 
+
+{% endblock %}

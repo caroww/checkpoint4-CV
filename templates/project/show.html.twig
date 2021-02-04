@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option spad set-bg" style="background-image:url('{{ asset('build/images/fondroselight.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Projets professionnels</h2>
+                        <a href="{{ path('home') }}">Home</a>
+                        <span>{{ project.title }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Services Section Begin -->
+    <section class="services spad set-bg" data-setbg="img/services-bg.jpg">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-10 col-md-10">
+                    <div class="services__item">
+                        <div class="services__item__icon">
+                            <span class="flaticon-044-aesthetic"></span>
+                        </div>
+                        <div class="services__item__text">
+                            <h2>{{ project.title }}</h2>
+                            <p>{{ project.duration }}</p>
+                            <p>{{ project.description }}</p>
+                            <h5><a href="{{ project.link1 }}">Démo GitHub</a></h5>
+                            <h5><a href="{{ project.link2 }}">Démo Supplémentaire</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ path('project_index') }}">Retour à la liste des projets</a>
+        </div>
+    </section>
+    <!-- Services Section End -->
+
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('show_project', { slugProject: project.slugProject }) }}">edit</a>
+
+    {{ include('project/_delete_form.html.twig') }}
+{% endif %}
+
+
+    
+
+
+{% endblock %}

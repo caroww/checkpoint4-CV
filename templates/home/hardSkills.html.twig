@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HardSkills index{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option spad set-bg" style="background-image:url('{{ asset('build/images/fondroselight.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Compétences</h2>
+                        <a href="{{ path('home') }}">Home</a>
+                        <span>Hard Skills</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+<!-- Chooseus Section Begin -->
+    <section class="chooseus spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Pourquoi m'engager ?</span>
+                        <h2>Voici mes compétences techniques</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+      {% for hard_skill in hard_skills %}            
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="img/icons/ci-1.png" alt="">
+                        <h5>{{ hard_skill.name }}</h5>
+                        <p>{{ hard_skill.description }}</p>
+                    </div>
+                </div>            
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+            </div>
+
+        </div>
+    </section>
+    <!-- Chooseus Section End -->
+
+{% endblock %}
