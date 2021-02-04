@@ -38,6 +38,6 @@ security:
          - { path: ^/experience, roles: ROLE_ADMIN }
          - { path: ^/contact, roles: ROLE_ADMIN }
          - { path: ^/project, roles: ROLE_ADMIN }
+         - { path: ^/hard/skills, roles: ROLE_ADMIN }
   
-
 

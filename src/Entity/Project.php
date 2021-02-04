@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
- */
+*/
+ 
 class Project
 {
     /**
@@ -46,6 +47,11 @@ class Project
      * @ORM\Column(type="string", length=500)
      */
     private $slugProject;
+
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $url;
 
     public function getId(): ?int
     {
@@ -123,4 +129,17 @@ class Project
 
         return $this;
     }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
 }
