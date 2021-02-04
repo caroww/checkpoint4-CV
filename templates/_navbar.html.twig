@@ -23,12 +23,12 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <div class="header__logo">
                         <a href="./index.html"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-11">
                     <div class="header__menu__option">
                         <nav class="header__menu">
                             <ul>
@@ -49,14 +49,26 @@
                                     </ul>
                                 {% endif %}    
                                 </li>
-                                <li><a href="#">Pages</a>
+                                <li><a href="#">Compétences</a>
                                     <ul class="dropdown">
-                                        <li><a href="./pricing.html">Pricing</a></li>
-                                        <li><a href="./doctor.html">Doctor</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li><a href="{{ path('home_hardSkills') }}">HardSkills</a></li>
+                                        <li><a href="./doctor.html">SoftSkills</a></li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <ul class="dropdown">
+                                        <li><a href="{{ path('hard_skills_index') }}">Liste des HardSkills</a></li>
+                                        <li><a href="{{ path('hard_skills_new') }}">Ajouter un HardSkill</a></li>                                        
                                     </ul>
+                                {% endif %}                                      
+                                    </ul>
+                                </li>                                 
+                                 <li><a href="{{ path('home_article') }}">Blog</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <ul class="dropdown">
+                                        <li><a href="{{ path('article_index') }}">Liste des articles</a></li>
+                                        <li><a href="{{ path('article_new') }}">Ajouter un article</a></li>                                        
+                                    </ul>
+                                {% endif %}    
                                 </li>
-                                <li><a href="#">News</a></li>
                                 <li>{% if app.user %}
                                         {{ app.user.email }}
                                         <a href="{{ path('app_logout') }}"> Se déconnecter</a>

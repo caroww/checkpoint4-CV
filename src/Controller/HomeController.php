@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ExperienceRepository;
 use App\Repository\ProjectRepository;
+use App\Repository\HardSkillsRepository;
+use App\Repository\ArticleRepository;
 
 class HomeController extends AbstractController
 
@@ -38,6 +40,26 @@ class HomeController extends AbstractController
     {
         return $this->render('home/project.html.twig', [
             'projects' => $projectRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/home/hardSkills", name="home_hardSkills", methods={"GET"})
+     */
+    public function hardSkills(hardSkillsRepository $hardSkillsRepository): Response
+    {
+        return $this->render('home/hardSkills.html.twig', [
+            'hard_skills' => $hardSkillsRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/home/article", name="home_article", methods={"GET"})
+     */
+    public function articleIndex(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('home/articleIndex.html.twig', [
+            'articles' => $articleRepository->findAll(),
         ]);
     }
 

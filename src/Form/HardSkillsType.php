@@ -2,30 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Project;
+use App\Entity\HardSkills;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
-class ProjectType extends AbstractType
+class HardSkillsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('name')
             ->add('description')
-            ->add('duration')
-            ->add('link1')
-            ->add('link2')
-            ->add('url')
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Project::class,
+            'data_class' => HardSkills::class,
         ]);
     }
 }

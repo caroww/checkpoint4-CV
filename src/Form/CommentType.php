@@ -2,30 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Project;
+use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
-class ProjectType extends AbstractType
+class CommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title')
-            ->add('description')
-            ->add('duration')
-            ->add('link1')
-            ->add('link2')
-            ->add('url')
-            ;
+            ->add('textComment')
+            ->add('pseudo')
+            ->add('date')
+            /* ->add('article') */
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Project::class,
+            'data_class' => Comment::class,
         ]);
     }
 }
