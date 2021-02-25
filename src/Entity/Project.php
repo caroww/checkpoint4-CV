@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
+ * @Vich\Uploadable
 */
  
 class Project
@@ -52,6 +55,22 @@ class Project
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $url;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $projectPicture;
+
+    /**
+     * @Vich\UploadableField(mapping="upload_picture", fileNameProperty="projectPicture")
+     * @var File
+     */
+    private $projectPictureFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateAt;
 
     public function getId(): ?int
     {
@@ -138,6 +157,44 @@ class Project
     public function setUrl(?string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getProjectPicture(): ?string
+    {
+        return $this->projectPicture;
+    }
+
+    public function setProjectPicture(?string $projectPicture): self
+    {
+        $this->projectPicture = $projectPicture;
+
+        return $this;
+    }
+
+    public function setProjectPictureFile(File $image = null)
+    {
+        $this->projectPictureFile = $image;
+
+        if ($image){
+            $this->updateAt = (new \DateTime('now'));
+        }     
+    }
+
+    public function getProjectPictureFile(): ?File
+    {
+        return $this->projectPictureFile;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
 
         return $this;
     }

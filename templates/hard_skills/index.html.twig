@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Picture name</th>
+                <th>Picture</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +22,8 @@
                 <td>{{ hard_skill.id }}</td>
                 <td>{{ hard_skill.name }}</td>
                 <td>{{ hard_skill.description }}</td>
+                <td>{{ hard_skill.hardSkillsLogo }}</td>
+                <td><img style="width:50px"src="/uploads/{{ hard_skill.hardSkillsLogo }}" alt=""></td>
                 <td>
                     <a href="{{ path('hard_skills_show', {'id': hard_skill.id}) }}">show</a>
                     <a href="{{ path('hard_skills_edit', {'id': hard_skill.id}) }}">edit</a>

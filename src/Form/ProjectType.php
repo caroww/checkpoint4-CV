@@ -6,6 +6,7 @@ use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 
 class ProjectType extends AbstractType
@@ -19,6 +20,11 @@ class ProjectType extends AbstractType
             ->add('link1')
             ->add('link2')
             ->add('url')
+            ->add('projectPictureFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
             ;
     }
 
