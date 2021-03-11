@@ -2,10 +2,23 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        upload_picture:
-            uri_prefix: /images/uploads
-            upload_destination: '%upload_directory%'
+        upload_project:
+            uri_prefix: /images/uploads/project
+            upload_destination: "%kernel.project_dir%/public/uploads/project"
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+        
+        upload_markdown:
+            uri_prefix: /images/uploads/markdown
+            upload_destination: "%kernel.project_dir%/templates/project/descriptionMd"
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
 
+        upload_logo:
+            uri_prefix: /images/uploads/logo
+            upload_destination: "%kernel.project_dir%/public/uploads/logo"
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true

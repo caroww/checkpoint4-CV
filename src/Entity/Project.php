@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -59,10 +61,21 @@ class Project
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $projectDescriptionMd;
+
+    /**
+     * @Vich\UploadableField(mapping="upload_markdown", fileNameProperty="projectDescriptionMd")
+     * @var File
+     */
+    private $projectDescriptionMdFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $projectPicture;
 
     /**
-     * @Vich\UploadableField(mapping="upload_picture", fileNameProperty="projectPicture")
+     * @Vich\UploadableField(mapping="upload_project", fileNameProperty="projectPicture")
      * @var File
      */
     private $projectPictureFile;
@@ -71,6 +84,18 @@ class Project
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updateAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=HardSkills::class, mappedBy="project")
+     */
+    private $hardSkills;
+
+
+
+    public function __construct()
+    {
+        $this->hardSkills = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -187,6 +212,32 @@ class Project
         return $this->projectPictureFile;
     }
 
+    public function getProjectDescriptionMd(): ?string
+    {
+        return $this->projectDescriptionMd;
+    }
+
+    public function setProjectDescriptionMd(?string $projectDescriptionMd): self
+    {
+        $this->projectDescriptionMd = $projectDescriptionMd;
+
+        return $this;
+    }
+
+    public function setProjectDescriptionMdFile(File $doc = null)
+    {
+        $this->projectDescriptionMdFile = $doc;
+
+        if ($doc){
+            $this->updateAt = (new \DateTime('now'));
+        }     
+    }
+
+    public function getProjectDescriptionMdFile(): ?File
+    {
+        return $this->projectDescriptionMdFile;
+    }
+
     public function getUpdateAt(): ?\DateTimeInterface
     {
         return $this->updateAt;
@@ -195,6 +246,33 @@ class Project
     public function setUpdateAt(?\DateTimeInterface $updateAt): self
     {
         $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|HardSkills[]
+     */
+    public function getHardSkills(): Collection
+    {
+        return $this->hardSkills;
+    }
+
+    public function addHardSkill(HardSkills $hardSkill): self
+    {
+        if (!$this->hardSkills->contains($hardSkill)) {
+            $this->hardSkills[] = $hardSkill;
+            $hardSkill->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHardSkill(HardSkills $hardSkill): self
+    {
+        if ($this->hardSkills->removeElement($hardSkill)) {
+            $hardSkill->removeProject($this);
+        }
 
         return $this;
     }

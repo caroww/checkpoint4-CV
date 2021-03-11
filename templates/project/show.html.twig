@@ -36,10 +36,22 @@
                             <p>{{ project.description }}</p>
                             <h5><a href="{{ project.link1 }}">Démo GitHub</a></h5>
                             <h5><a href="{{ project.link2 }}">Démo Supplémentaire</a></h5>
+                            <img style="width:200px" src="/uploads/project/{{ project.projectPicture }}" alt=""> 
+                            
+                            {% include 'project/descriptionMd/' ~ project.projectDescriptionMd %}
+                               
                         </div>
                     </div>
                 </div>
             </div>
+            <strong>Tchnologies utilisées :</strong>
+        <ul>
+            {% for hard_skill in project.hardSkills %}
+                <img style="width:100px" src="/uploads/logo/{{ hard_skill.hardSkillsLogo }}" alt=""> 
+            {% else %}
+                <li>Pas de compétence pour ce projet</li>
+            {% endfor %}
+        </ul>
             <a href="{{ path('project_index') }}">Retour à la liste des projets</a>
         </div>
     </section>
