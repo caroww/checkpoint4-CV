@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use App\Entity\HardSkills;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class ProjectType extends AbstractType
@@ -24,6 +26,18 @@ class ProjectType extends AbstractType
                 'required' => false,
                 'allow_delete' => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+            ])
+            ->add('projectDescriptionMdFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
+            ->add('hardSkills', EntityType::class, [
+                'class' => HardSkills::class,
+                'choice_label' => 'name',         
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,         
             ])
             ;
     }

@@ -36,7 +36,8 @@
                             <p>{{ project.duration }}</p>
                             <h5><a href="{{ project.link1 }}">Démo GitHub</a></h5>
                             <h5><a href="{{ project.link2 }}">Démo Supplémentaire</a></h5>
-                            <img style="width:200px" src="/uploads/{{ project.projectPicture }}" alt="">
+                            <img style="width:200px" src="/uploads/project/{{ project.projectPicture }}" alt="">
+                            
 
                             <button class="site-btn"><a href="{{ path('show_project', { slugProject: project.slugProject }) }}">Détails du projet</a></button>
                         </div>

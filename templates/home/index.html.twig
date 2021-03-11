@@ -6,23 +6,17 @@
 <!-- Hero Section Begin -->
     <section class="hero spad set-bg" style="background-image:url('{{ asset('build/images/fondroselight.jpg') }}')">
         <div class="container">
-            <div class="row">
-
-                <div class="col-lg-8 mt-5 mb-3">
+          
+                <div class="mt-5 mb-3">
                     <div class="hero__text">
-                        <h1 class="h1-head">Caroline Dubois Wurckler</h1>
-                        <h2 class="h2-head">Développeuse Web-Mobile Junior</h2>
+                        <h1 class="h1-head text-center">Caroline Dubois Wurckler</h1>
+                        <h2 class="h2-head text-center">Développeuse Web & Mobile Junior</h2>
+{#                         <div class="hero__text d-flex justify-content-center latest__btn">
                         <a href="{{ path('message_new') }}" class="primary-btn normal-btn">Contactez moi !</a>
+                        </div> #}
                     </div>
-                </div>
-
-                <div class="col-lg-4 mt-5">
-                    <div class="team__item">
-                        <img src="{{ asset('build/images/caroline2.jpg') }}" alt="">
-                    </div>
-                </div>
-            
-            </div>
+                </div>            
+         
         </div>
     </section>
     <!-- Hero Section End -->
@@ -34,14 +28,7 @@
 
                 <div class="col-lg-4">
                     <div class="consultation__form">
-                        <div class="section-title">                            
-                            <h2>Informations</h2>
-                        </div>
-                        <div>
-                        <p>Permis B (Véhiculée)</p>
-                        <p>15/09/1986</p>
-                        <p>Secteur recherché : Eurométropole Nord, Brumath</p>
-                        </div>
+                            <img src="{{ asset('build/images/caroline2.jpg') }}" alt="">
                     </div>
                 </div>
 
@@ -53,10 +40,11 @@
                                     <div class="section-title">                                        
                                         <h2>Qui suis-je<b>?</b></h2>
                                     </div>
-                                    <p>Ergothérapeute depuis plus de 10 ans et souhaitant donner 
+                                    <p class="text-justify">Ergothérapeute depuis plus de 10 ans et souhaitant donner 
                                     un nouveau tournant à ma carrière,  je décide d'intégrer la 
                                     Wild Code School pour devenir développeuse web. Je suis 
                                     maintenant à la recherche d'opportunités pour intégrer ce nouveau milieu professionnel.</p>
+                                    <p class="text-justify mt-1">Secteur recherché : Eurométropole Nord, Brumath</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
@@ -85,22 +73,22 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
-                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/html.svg')}}" alt=""></a>                     
+                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/logo/html.svg')}}" alt=""></a>                     
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
-                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/css.svg')}}" alt=""></a> 
+                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/logo/css.svg')}}" alt=""></a> 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
-                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/mysql.svg')}}" alt=""></a> 
+                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/logo/mysql.svg')}}" alt=""></a> 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="chooseus__item">
-                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/php.svg')}}" alt=""></a> 
+                        <a href="{{ path('home_hardSkills') }}"><img src="{{ asset('build/images/logo/php.svg')}}" alt=""></a> 
                     </div>
                 </div>
             </div>
@@ -117,68 +105,35 @@
                         <h2>Mes projets actuels</h2>                       
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="services__btn">
-                        <a href="{{ path('message_new') }}" class="primary-btn">Contactez-moi !</a>
-                    </div>
-                </div>
             </div>
-            <div class="row">                
+            <div class="row">
+        {% for project in projects %}                           
                 <div class="col-lg-6 col-md-6">
-                    <div class="services__item">
+                
+                    <div class="services__item" style="width:auto;height:200px;">
                         <div class="services__item__icon">
-                            <a href="{{ path('home_project') }}"><span class="flaticon-044-aesthetic"><img style="width:200px; heigh:auto" src="{{ asset('build/images/klass.png') }}" alt=""></span></a>
+                            <a href="{{ path('show_project', { slugProject: project.slugProject }) }}"><span class="flaticon-044-aesthetic"><img style="width:200px; heigh:auto" src="/uploads/project/{{ project.projectPicture }}" alt=""></span></a>
                         </div>
                         <div class="services__item__text">
-                            <h5>Klass Event</h5>
-                            <p>Projet client : refonte d'un site d'événementiel.
-                            </p>
+                            <h5>{{ project.title }}</h5>                            
                         </div>
                     </div>
+
                 </div>                
-                <div class="col-lg-6 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                            <a href="{{ path('home_project') }}"><span class="flaticon-044-aesthetic"><img style="width:200px; heigh:auto" src="{{ asset('build/images/gotham.png') }}" alt=""></span></a>
-                        </div>
-                        <div class="services__item__text">
-                            <h5>Gotham Recostruction Corp</h5>
-                            <p>Hackathon de 48h : utilisation d'une API de superHeros.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                            <a href="{{ path('home_project') }}"><span class="flaticon-044-aesthetic"><img style="width:200px; heigh:auto" src="{{ asset('build/images/gladiamax.png') }}" alt=""></span></a>
-                        </div>
-                        <div class="services__item__text">
-                            <h5>Gladiamax</h5>
-                            <p>Hackathon 28h : site de paris en ligne.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                            <a href="{{ path('home_project') }}"><span class="flaticon-044-aesthetic"><img style="width:200px; heigh:auto" src="{{ asset('build/images/help.png') }}" alt=""></span></a>
-                        </div>
-                        <div class="services__item__text">
-                            <h5>Stras'Help</h5>
-                            <p>Projet fictif : plateforme d'entraide communautaire.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+
+                
             </div>
         </div>
     </section>
     <!-- Services Section End -->
     
     <!-- Latest News Begin -->
-    <section class="latest spad">
+{#     <section class="latest spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-6">
@@ -225,7 +180,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> #}
     <!-- Latest News End -->
 
 {% endblock %}
